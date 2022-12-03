@@ -1,42 +1,18 @@
 //use this file as template
 fun main() {
     fun part1(input: List<String>): Int {
-        var winningPoint = 0
         var sum = 0
         input.forEach {
             val a = it.split(" ").first()
             val b = it.split(" ").last()
-            val point = when (b) {
-                "X" -> 1
-                "Y" -> 2
-                else -> 3
-            }
-            if (a == "A" && b == "X")
-                winningPoint = 3
-            else if (a == "A" && b == "Y")
-                winningPoint = 6
-            else if (a == "A" && b == "Z")
-                winningPoint = 0
-            else if (a == "B" && b == "X")
-                winningPoint = 0
-            else if (a == "B" && b == "Y")
-                winningPoint = 3
-            else if (a == "B" && b == "Z")
-                winningPoint = 6
-            else if (a == "C" && b == "X")
-                winningPoint = 6
-            else if (a == "C" && b == "Y")
-                winningPoint = 0
-            else if (a == "C" && b == "Z")
-                winningPoint = 3
-
-            sum += (point + winningPoint)
+            sum += findPoint(a, b)
         }
-        return sum
+        return input.fold(0) { acc, s ->
+            acc + findPoint(s.split(" ").first(), s.split(" ").last())
+        }
     }
 
     fun part2(input: List<String>): Int {
-        var winningPoint = 0
         var sum = 0
         input.forEach {
             val a = it.split(" ").first()
@@ -66,34 +42,7 @@ fun main() {
                     }
                 }
             }
-
-
-            val point = when (b) {
-                "X" -> 1
-                "Y" -> 2
-                else -> 3
-            }
-            if (a == "A" && b == "X")
-                winningPoint = 3
-            else if (a == "A" && b == "Y")
-                winningPoint = 6
-            else if (a == "A" && b == "Z")
-                winningPoint = 0
-            else if (a == "B" && b == "X")
-                winningPoint = 0
-            else if (a == "B" && b == "Y")
-                winningPoint = 3
-            else if (a == "B" && b == "Z")
-                winningPoint = 6
-            else if (a == "C" && b == "X")
-                winningPoint = 6
-            else if (a == "C" && b == "Y")
-                winningPoint = 0
-            else if (a == "C" && b == "Z")
-                winningPoint = 3
-
-            sum += (point + winningPoint)
-
+            sum += findPoint(a, b)
         }
         return sum
     }
@@ -106,4 +55,34 @@ fun main() {
     val input = readInput("Day02")
     println(part1(input))
     println(part2(input))
+}
+
+fun findPoint(a: String, b: String): Int {
+    val point = when (b) {
+        "X" -> 1
+        "Y" -> 2
+        else -> 3
+    }
+
+    val winningPoint =
+        if (a == "A" && b == "X")
+            3
+        else if (a == "A" && b == "Y")
+            6
+        else if (a == "A" && b == "Z")
+            0
+        else if (a == "B" && b == "X")
+            0
+        else if (a == "B" && b == "Y")
+            3
+        else if (a == "B" && b == "Z")
+            6
+        else if (a == "C" && b == "X")
+            6
+        else if (a == "C" && b == "Y")
+            0
+        else
+            3
+
+    return point + winningPoint
 }
