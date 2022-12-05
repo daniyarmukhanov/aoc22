@@ -1,12 +1,6 @@
 //use this file as template
 fun main() {
     fun part1(input: List<String>): Int {
-        var sum = 0
-        input.forEach {
-            val a = it.split(" ").first()
-            val b = it.split(" ").last()
-            sum += findPoint(a, b)
-        }
         return input.fold(0) { acc, s ->
             acc + findPoint(s.split(" ").first(), s.split(" ").last())
         }
