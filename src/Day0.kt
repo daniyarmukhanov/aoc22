@@ -1,12 +1,19 @@
-
 //use this file as template
 fun main() {
     fun part1(input: List<String>): Int {
-        return input.size
+        var result = 0
+        input.forEach {
+            result += it.length
+        }
+        return result
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        var result = 0
+        input.forEach {
+            result += it.length
+        }
+        return result
     }
 
 
